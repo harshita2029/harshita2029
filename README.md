@@ -8,14 +8,11 @@
 
 ### 👩‍💻 About Me
 
-` ``python
-class Harshita:
-    degree    = "B.E. Computer Engineering '29 @ SVIT Vasad"
-    focus     = ["AI/ML", "SDE", "Automation", "DSA"]
-    languages = ["Python", "C++", "JavaScript", "C"]
-    currently = "Building AI-powered tools 🔧"
-    open_to   = "Internships & Collaborations 🤝"
-` ``
+🎓 **Degree** — B.E. Computer Engineering '29 @ SVIT Vasad
+🎯 **Focus** — AI/ML • SDE • Automation • DSA
+💻 **Languages** — Python • C++ • JavaScript • C
+🔧 **Currently** — Building AI-powered tools
+🤝 **Open to** — Internships & Collaborations
 
 ---
 
@@ -53,8 +50,8 @@ class Harshita:
 
 ### 📬 Connect
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/harshita2029)
-[![Email](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your@email.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]([https://linkedin.com/in/harshita2029](https://www.linkedin.com/in/harshita-solanki-978aa9274)
+[![Email](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:solharshita.2007@gmail.com)
 
 ---
 
