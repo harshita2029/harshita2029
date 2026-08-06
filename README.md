@@ -8,7 +8,7 @@
 
 ### 👩‍💻 About Me
 
-🎓 **Degree** — B.E. Computer Engineering '29 @ SVIT Vasad
+🎓 **Degree** — B.E. Computer Engineering '29 
 🎯 **Focus** — AI/ML • SDE • Automation • DSA
 💻 **Languages** — Python • C++ • JavaScript • C
 🔧 **Currently** — Building AI-powered tools
