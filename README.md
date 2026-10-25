@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/hero.svg" width="100%" alt="Harshita Solanki - Markets x Models"/>
+<img src="hero.svg" width="100%" alt="Harshita Solanki - Markets x Models"/>
 
 </div>
 
@@ -10,7 +10,7 @@
 
 <div align="center">
 
-<img src="assets/equations.png" width="100%" alt="Bayes' rule, softmax, geometric Brownian motion, Sharpe ratio, gradient descent and the Black-Scholes PDE"/>
+<img src="equations.png" width="100%" alt="Bayes' rule, softmax, geometric Brownian motion, Sharpe ratio, gradient descent and the Black-Scholes PDE"/>
 
 </div>
 
@@ -20,7 +20,7 @@
 
 <div align="center">
 
-<img src="assets/dynamics.svg" width="100%" alt="Animated Monte Carlo price paths, Bayesian posterior sharpening and training loss falling"/>
+<img src="dynamics.svg" width="100%" alt="Animated Monte Carlo price paths, Bayesian posterior sharpening and training loss falling"/>
 
 </div>
 
@@ -50,7 +50,7 @@
 <div align="center">
 
 <a href="https://github.com/harshita2029/repolens">
-  <img src="assets/repolens.svg" width="100%" alt="RepoLens - talk to your codebase through a knowledge graph"/>
+  <img src="repolens.svg" width="100%" alt="RepoLens - talk to your codebase through a knowledge graph"/>
 </a>
 
 <br/>
@@ -65,7 +65,7 @@
 
 <div align="center">
 
-<img src="assets/pipeline.svg" width="100%" alt="Data, features, model, risk, decision"/>
+<img src="pipeline.svg" width="100%" alt="Data, features, model, risk, decision"/>
 
 </div>
 
@@ -73,7 +73,7 @@
 
 <div align="center">
 
-<img src="assets/footer.svg" width="100%" alt=""/>
+<img src="footer.svg" width="100%" alt=""/>
 
 </div>
 
