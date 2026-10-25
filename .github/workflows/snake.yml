@@ -14,12 +14,154 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark
+      - name: Fetch contribution calendar
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LOGIN: ${{ github.repository_owner }}
+        run: |
+          mkdir -p dist
+          gh api graphql -f login="$LOGIN" -f query='query($login: String!) { user(login: $login) { contributionsCollection { contributionCalendar { totalContributions weeks { contributionDays { date contributionCount weekday } } } } } }' > dist/calendar.json
+
+      - name: Draw snake calendar
+        run: |
+          python3 - <<'PY'
+          import json, math, datetime as dt
+          from pathlib import Path
+
+          d = json.loads(Path("dist/calendar.json").read_text())
+          cal = d["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+          weeks = cal["weeks"]
+          total = cal["totalContributions"]
+
+          CELL, PITCH = 12, 16
+          X0, Y0 = 56, 78
+          cols = len(weeks)
+          W = X0 + cols * PITCH + 26
+          H = Y0 + 7 * PITCH + 70
+
+          BG, EDGE, TX, MU = "#0B1226", "#26335F", "#E6EDF7", "#8B9BC0"
+          EMPTY = "#17213B"
+          RAMP = ["#0E4429", "#006D32", "#26A641", "#39D353"]
+          SNAKE = "#22D3EE"
+          SANS = "Segoe UI, Helvetica Neue, Arial, sans-serif"
+          MONO = "SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace"
+
+          counts = [x["contributionCount"] for w in weeks for x in w["contributionDays"]]
+          mx = max(counts + [1])
+
+
+          def level(c):
+              return 0 if c == 0 else min(4, max(1, math.ceil(4 * c / mx)))
+
+
+          def color(c):
+              lv = level(c)
+              return EMPTY if lv == 0 else RAMP[lv - 1]
+
+
+          def cx(col):
+              return X0 + col * PITCH + CELL / 2
+
+
+          def cy(row):
+              return Y0 + row * PITCH + CELL / 2
+
+
+          # distance along the zig-zag snake path for each cell
+          PATH_LEN = cols * 6 * PITCH + (cols - 1) * PITCH
+
+
+          def dist(col, row):
+              base = col * (6 * PITCH + PITCH)
+              return base + (row * PITCH if col % 2 == 0 else (6 - row) * PITCH)
+
+
+          T = 28            # seconds per loop
+          RUN = 0.92        # fraction of loop the snake spends moving
+
+          out = []
+          a = out.append
+          a(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Animated contribution calendar with a snake">')
+          a(f'<rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="16" fill="{BG}" stroke="{EDGE}"/>')
+          a(f'<text x="26" y="36" font-family="{SANS}" font-size="17" font-weight="600" fill="{TX}">Contribution activity</text>')
+          a(f'<text x="{W - 26}" y="36" text-anchor="end" font-family="{SANS}" font-size="14" fill="{MU}">{total} contributions in the last year</text>')
+
+          # month labels
+          cands = []
+          prev = None
+          for c, w in enumerate(weeks):
+              day = w["contributionDays"][0]["date"]
+              m = dt.date.fromisoformat(day).month
+              if m != prev:
+                  cands.append((c, dt.date.fromisoformat(day).strftime("%b")))
+                  prev = m
+          for i, (c, name) in enumerate(cands):
+              nxt = cands[i + 1][0] if i + 1 < len(cands) else cols + 99
+              if nxt - c >= 3:
+                  a(f'<text x="{X0 + c * PITCH}" y="{Y0 - 14}" font-family="{SANS}" font-size="12" fill="{MU}">{name}</text>')
+
+          # weekday labels
+          for row, name in ((1, "Mon"), (3, "Wed"), (5, "Fri")):
+              a(f'<text x="{X0 - 12}" y="{cy(row) + 4}" text-anchor="end" font-family="{SANS}" font-size="12" fill="{MU}">{name}</text>')
+
+          # cells
+          for c, w in enumerate(weeks):
+              for day in w["contributionDays"]:
+                  row = day["weekday"]
+                  n = day["contributionCount"]
+                  col_ = color(n)
+                  x, y = X0 + c * PITCH, Y0 + row * PITCH
+                  if n > 0:
+                      fe = dist(c, row) / PATH_LEN * RUN
+                      fe = min(max(fe, 0.002), 0.95)
+                      a(
+                          f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="3" fill="{col_}">'
+                          f'<animate attributeName="fill" calcMode="discrete" values="{col_};{EMPTY};{col_}" '
+                          f'keyTimes="0;{fe:.4f};0.97" dur="{T}s" repeatCount="indefinite"/></rect>'
+                      )
+                  else:
+                      a(f'<rect x="{x}" y="{y}" width="{CELL}" height="{CELL}" rx="3" fill="{col_}"/>')
+
+          # snake path (relative to the first cell centre)
+          pts = []
+          for c in range(cols):
+              if c % 2 == 0:
+                  pts += [(cx(c), cy(0)), (cx(c), cy(6))]
+              else:
+                  pts += [(cx(c), cy(6)), (cx(c), cy(0))]
+          x0_, y0_ = pts[0]
+          rel = "M0,0 " + " ".join(f"L{px - x0_:.1f},{py - y0_:.1f}" for px, py in pts[1:])
+
+          SEG = 8
+          for k in range(SEG - 1, -1, -1):
+              size = CELL + 2 if k == 0 else CELL - 1 - (k * 0.35)
+              op = 1.0 if k == 0 else max(0.25, 0.85 - k * 0.1)
+              begin = k * 0.28
+              extra = f' stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="1.4"' if k == 0 else ""
+              a(
+                  f'<g opacity="{op:.2f}"><rect x="{x0_ - size / 2:.1f}" y="{y0_ - size / 2:.1f}" width="{size:.1f}" height="{size:.1f}" rx="4" fill="{SNAKE}"{extra}/>'
+                  f'<animateMotion dur="{T}s" begin="{begin:.2f}s" repeatCount="indefinite" calcMode="linear" '
+                  f'keyPoints="0;1;1" keyTimes="0;{RUN};1" path="{rel}"/></g>'
+              )
+
+          # footer: date range + legend
+          first = dt.date.fromisoformat(weeks[0]["contributionDays"][0]["date"])
+          last = dt.date.fromisoformat(weeks[-1]["contributionDays"][-1]["date"])
+          fy = Y0 + 7 * PITCH + 38
+          a(f'<text x="{X0}" y="{fy + 4}" font-family="{MONO}" font-size="12" fill="{MU}">{first.strftime("%b %Y")} - {last.strftime("%b %Y")}</text>')
+          lx = W - 26 - (5 * PITCH + 90)
+          a(f'<text x="{lx}" y="{fy + 4}" font-family="{SANS}" font-size="12" fill="{MU}">Less</text>')
+          for i, colr in enumerate([EMPTY] + RAMP):
+              a(f'<rect x="{lx + 34 + i * PITCH}" y="{fy - 8}" width="{CELL}" height="{CELL}" rx="3" fill="{colr}"/>')
+          a(f'<text x="{lx + 34 + 5 * PITCH + 4}" y="{fy + 4}" font-family="{SANS}" font-size="12" fill="{MU}">More</text>')
+          a("</svg>")
+
+          svg = "\n".join(out)
+          Path("dist/github-snake.svg").write_text(svg, encoding="utf-8")
+          Path("dist/github-snake-dark.svg").write_text(svg, encoding="utf-8")
+          print("snake svg written:", len(svg), "bytes,", cols, "weeks")
+          PY
+          rm -f dist/calendar.json
 
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
