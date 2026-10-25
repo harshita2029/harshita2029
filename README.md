@@ -71,6 +71,24 @@
 
 <br/>
 
+<h3 align="center">📊 Activity</h3>
+
+<div align="center">
+
+<img src="https://github-readme-stats.vercel.app/api?username=harshita2029&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165" alt="GitHub stats"/>
+<img src="https://streak-stats.demolab.com?user=harshita2029&theme=tokyonight&hide_border=true" height="165" alt="Contribution streak"/>
+
+<br/><br/>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harshita2029/harshita2029/output/github-snake-dark.svg"/>
+  <img alt="Contribution snake" src="https://raw.githubusercontent.com/harshita2029/harshita2029/output/github-snake.svg" width="100%"/>
+</picture>
+
+</div>
+
+<br/>
+
 <div align="center">
 
 <img src="footer.svg" width="100%" alt=""/>
