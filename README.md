@@ -15,11 +15,6 @@
 </div>
 
 <p align="center">
-I'm <b>Harshita</b>, a second-year Computer Engineering student at SVIT Vasad in Vadodara, graduating in 2029.<br/>
-I'm focused on machine learning and software engineering, and I learn by building.<br/>
-I'm an active member of the BUILDEX Club and take part in hackathons and open-source challenges.<br/>
-<a href="https://github.com/harshita2029/repolens"><b>RepoLens</b></a> is my main project so far.
-</p>
 
 <br/>
 
