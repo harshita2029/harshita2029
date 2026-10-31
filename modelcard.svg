@@ -42,7 +42,7 @@
 <g>
 <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.1321;0.1571;0.94;1" dur="14.0s" repeatCount="indefinite"/>
 <text x="60" y="335" font-family="Menlo, 'Liberation Mono', 'DejaVu Sans Mono', 'Courier New', monospace" font-size="13" fill="#8B9BC0">fine-tuned on</text>
-<text x="224" y="335" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="17" style="white-space:pre" xml:space="preserve"><tspan fill="#E6EDF7">hackathons</tspan><tspan fill="#8B9BC0"> &#183; </tspan><tspan fill="#E6EDF7">open-source challenges</tspan><tspan fill="#8B9BC0"> &#183; </tspan><tspan fill="#E6EDF7">BUILDEX Club</tspan></text>
+<text x="224" y="335" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="17" style="white-space:pre" xml:space="preserve"><tspan fill="#E6EDF7">hackathons</tspan><tspan fill="#8B9BC0"> &#183; </tspan><tspan fill="#E6EDF7">open-source challenges</tspan><tspan fill="#8B9BC0"> &#183; </tspan></text>
 <line x1="60" y1="349" x2="736" y2="349" stroke="#26335F" stroke-opacity="0.45"/>
 </g>
 <g>
