@@ -10,7 +10,7 @@
 
 <div align="center">
 
-<img src="modelcard.svg" width="100%" alt="Model card for harshita-2029: Computer Engineering at SVIT Vasad (GTU), trained by building projects, fine-tuned on hackathons, open-source challenges and the BUILDEX Club, shipped RepoLens, intended use machine learning and software engineering, based in Vadodara, release 2029."/>
+<img src="modelcard.svg" width="100%" alt="Model card for harshita-2029: Computer Engineering at SVIT Vasad (GTU), trained by building projects, fine-tuned on hackathons, open-source challenges , shipped RepoLens, intended use machine learning and software engineering, based in Vadodara, release 2029."/>
 
 </div>
 
