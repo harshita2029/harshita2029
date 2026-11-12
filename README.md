@@ -10,11 +10,16 @@
 
 <div align="center">
 
-<img src="modelcard.svg" width="100%" alt="Model card for harshita-2029: Computer Engineering at SVIT Vasad (GTU), trained by building projects, fine-tuned on hackathons, open-source challenges , shipped RepoLens, intended use machine learning and software engineering, based in Vadodara, release 2029."/>
+<img src="modelcard.svg" width="100%" alt="Model card for harshita-2029: Computer Engineering at SVIT Vasad (GTU), trained by building projects, fine-tuned on hackathons, open-source challenges and the BUILDEX Club, shipped RepoLens, intended use machine learning and software engineering, based in Vadodara, release 2029."/>
 
 </div>
 
 <p align="center">
+I'm <b>Harshita</b>, a second-year Computer Engineering student at SVIT Vasad in Vadodara, graduating in 2029.<br/>
+I'm focused on machine learning and software engineering, and I learn by building.<br/>
+I'm an active member of the BUILDEX Club and take part in hackathons and open-source challenges.<br/>
+<a href="https://github.com/harshita2029/repolens"><b>RepoLens</b></a> and <a href="https://github.com/harshita2029/vouchsafe"><b>VouchSafe</b></a> are my main projects so far.
+</p>
 
 <br/>
 
@@ -47,7 +52,7 @@
 
 <br/>
 
-<h3 align="center">🔬 Featured project</h3>
+<h3 align="center">🔬 Featured projects</h3>
 
 <div align="center">
 
@@ -58,6 +63,16 @@
 <br/>
 
 **[View RepoLens on GitHub →](https://github.com/harshita2029/repolens)**
+
+<br/><br/>
+
+<a href="https://github.com/harshita2029/vouchsafe">
+  <img src="vouchsafe.svg" width="100%" alt="VouchSafe - AI-guarded escrow for online payments"/>
+</a>
+
+<br/>
+
+**[View VouchSafe on GitHub →](https://github.com/harshita2029/vouchsafe)**
 
 </div>
 
